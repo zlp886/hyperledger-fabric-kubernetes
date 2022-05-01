@@ -29,9 +29,9 @@ Organizations:
                 Rule: "OR('OrdererMSP.admin')"
 
         OrdererEndpoints:
-            - orderer0.hlf.k8s.com:433 #7050
-            - orderer1.hlf.k8s.com:433 #7050
-            - orderer2.hlf.k8s.com:433 #7050
+            - orderer0.hlf.k8s.com:7050 #7050
+            - orderer1.hlf.k8s.com:7050 #7050
+            - orderer2.hlf.k8s.com:7050 #7050
 
     - &Org1
         Name: Org1MSP
@@ -52,7 +52,7 @@ Organizations:
                 Rule: "OR('Org1MSP.peer')"
         AnchorPeers:
             - Host: peer0.org1.hlf.k8s.com
-              Port: 433 #7051
+              Port: 7051 #7051
 
     - &Org2
         Name: Org2MSP
@@ -73,7 +73,7 @@ Organizations:
                 Rule: "OR('Org2MSP.peer')"
         AnchorPeers:
             - Host: peer0.org2.hlf.k8s.com
-              Port: 433 #7051
+              Port: 7051 #7051
 
     - &Org3
         Name: Org3MSP
@@ -94,7 +94,7 @@ Organizations:
                 Rule: "OR('Org3MSP.peer')"
         AnchorPeers:
             - Host: peer0.org3.hlf.k8s.com
-              Port: 433 #7051
+              Port: 7051 #7051
 
 ################################################################################
 #
@@ -227,15 +227,15 @@ Orderer: &OrdererDefaults
     EtcdRaft:
         Consenters:
         - Host: orderer0.hlf.k8s.com
-          Port: 433 #7050
+          Port: 7050 #7050
           ClientTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer0.hlf.k8s.com/tls/server.crt
           ServerTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer0.hlf.k8s.com/tls/server.crt
         - Host: orderer1.hlf.k8s.com
-          Port: 433 #7050
+          Port: 7050 #7050
           ClientTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer1.hlf.k8s.com/tls/server.crt
           ServerTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer1.hlf.k8s.com/tls/server.crt
         - Host: orderer2.hlf.k8s.com
-          Port: 433 #7050
+          Port: 7050 #7050
           ClientTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer2.hlf.k8s.com/tls/server.crt
           ServerTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer2.hlf.k8s.com/tls/server.crt
 
