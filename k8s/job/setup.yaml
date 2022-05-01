@@ -8,23 +8,6 @@ spec:
   template:
     spec:
       restartPolicy: Never
-      initContainers:
-        - name: git-clone
-          image: alpine/git
-          imagePullPolicy: IfNotPresent
-          args:
-            - clone
-            - --single-branch
-            - --
-            - https://github.com/zlp/hyperledger-fabric-kubernetes.git
-            - /repo
-          securityContext:
-            runAsUser: 1
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-          volumeMounts:
-            - name: repo
-              mountPath: /repo
       containers:
       - name: fabric-tools
         image: hyperledger/fabric-tools:2.4
@@ -61,7 +44,8 @@ spec:
           mountPath: /repo/hlf-config/crypto-config
       volumes:
       - name: repo
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: hlf-repo
       - name: chaincode-buildpack
         persistentVolumeClaim:
           claimName: chaincode-buildpack
