@@ -6,13 +6,15 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 spec:
   ingressClassName: nginx
   rules:
     - host: orderer0.hlf.k8s.com
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -22,7 +24,7 @@ spec:
     - host: orderer1.hlf.k8s.com
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -32,7 +34,7 @@ spec:
     - host: orderer2.hlf.k8s.com
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -42,7 +44,7 @@ spec:
     - host: orderer.hlf.k8s.com
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -52,7 +54,7 @@ spec:
     - host: peer0.org1.hlf.k8s.com
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -62,7 +64,7 @@ spec:
     - host: peer0.org2.hlf.k8s.com
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -72,7 +74,7 @@ spec:
     - host: peer0.org3.hlf.k8s.com
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
