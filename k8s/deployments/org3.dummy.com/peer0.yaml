@@ -2,31 +2,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "peer0.org3.dummy.com"
-  namespace: dummy-com
+  name: "peer0.org3.hlf.k8s.com"
+  namespace: hlfk8s
   labels: 
-    component: "peer0.org3.dummy.com"
+    component: "peer0.org3.hlf.k8s.com"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: "peer0.org3.dummy.com"
+      component: "peer0.org3.hlf.k8s.com"
   template:
     metadata:
       labels:
-        component: "peer0.org3.dummy.com"
+        component: "peer0.org3.hlf.k8s.com"
     spec:
       containers:
-        - name: peer0-org3-dummy-com
-          image: hyperledger/fabric-peer:2.3.0
+        - name: peer0-org3-hlf-k8s-com
+          image: hyperledger/fabric-peer:2.4
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
           env:
             - name: FABRIC_LOGGING_SPEC
               value: info
             - name: CORE_PEER_ID
-              value: peer0-org3-dummy-com
+              value: peer0-org3-hlf-k8s-com
             - name: CORE_PEER_ADDRESS
-              value: peer0-org3-dummy-com:7051
+              value: peer0.org3.hlf.k8s.com
             - name: CORE_PEER_LISTENADDRESS
               value: 0.0.0.0:7051
             - name: CORE_PEER_CHAINCODELISTENADDRESS
@@ -40,9 +40,9 @@ spec:
             - name: CORE_PEER_GOSSIP_USELEADERELECTION
               value: "true"
             - name: CORE_PEER_GOSSIP_BOOTSTRAP
-              value: peer0-org3-dummy-com:7051
+              value: peer0.org3.hlf.k8s.com
             - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
-              value: peer0-org3-dummy-com:7051
+              value: peer0.org3.hlf.k8s.com
             - name: CORE_PEER_TLS_ENABLED
               value: "true"
             - name: CORE_PEER_TLS_ROOTCERT_FILE
@@ -52,7 +52,7 @@ spec:
             - name: CORE_PEER_TLS_KEY_FILE
               value: /var/hyperledger/peer/tls/server.key
             - name: CORE_PEER_TLS_SERVERHOSTOVERRIDE
-              value: peer0-org3-dummy-com
+              value: peer0-org3-hlf-k8s-com
           ports:
             - containerPort: 7051
             - containerPort: 7052
@@ -74,10 +74,10 @@ spec:
               subPath: config/core.yaml
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/peer/msp
-              subPath: peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/msp
+              subPath: peerOrganizations/org3.hlf.k8s.com/peers/peer0.org3.hlf.k8s.com/msp
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/peer/tls
-              subPath: peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/tls
+              subPath: peerOrganizations/org3.hlf.k8s.com/peers/peer0.org3.hlf.k8s.com/tls
       volumes:
         - name: chaincode-buildpack
           persistentVolumeClaim:

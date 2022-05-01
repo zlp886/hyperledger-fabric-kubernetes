@@ -1,0 +1,80 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: orderer0.hlf.k8s.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orderer0-hlf-k8s-com
+                port:
+                  number: 7050
+    - host: orderer1.hlf.k8s.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orderer1-hlf-k8s-com
+                port:
+                  number: 7050
+    - host: orderer2.hlf.k8s.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orderer2-hlf-k8s-com
+                port:
+                  number: 7050
+    - host: orderer.hlf.k8s.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ordering-service-hlf-k8s-com
+                port:
+                  number: 7050
+    - host: peer0.org1.hlf.k8s.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: peer0-org1-hlf-k8s-com
+                port:
+                  number: 7051
+    - host: peer0.org2.hlf.k8s.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: peer0-org2-hlf-k8s-com
+                port:
+                  number: 7051
+    - host: peer0.org3.hlf.k8s.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: peer0-org3-hlf-k8s-com
+                port:
+                  number: 7051
