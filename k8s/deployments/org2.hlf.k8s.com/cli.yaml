@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "cli.peer0.org2.hlf.k8s"
+  name: "cli.peer0.org2.hlf.k8s.com"
   namespace: hlfk8s
   labels:
-    component: "cli.peer0.org2.hlf.k8s"
+    component: "cli.peer0.org2.hlf.k8s.com"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: "cli.peer0.org2.hlf.k8s"
+      component: "cli.peer0.org2.hlf.k8s.com"
   template:
     metadata:
       labels:
-        component: "cli.peer0.org2.hlf.k8s"
+        component: "cli.peer0.org2.hlf.k8s.com"
     spec:
       containers:
         - name: cli-peer0-org2-hlf-k8s-com
@@ -34,11 +34,11 @@ spec:
             - name: CORE_PEER_TLS_ENABLED
               value: "true"
             - name: CORE_PEER_TLS_ROOTCERT_FILE
-              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s/peers/peer0.org2.hlf.k8s/tls/ca.crt
+              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/peers/peer0.org2.hlf.k8s.com/tls/ca.crt
             - name: CORE_PEER_MSPCONFIGPATH
-              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s/users/Admin@org2.hlf.k8s/msp
+              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/users/Admin@org2.hlf.k8s.com/msp
             - name: ORDERER_CA
-              value: /etc/hyperledger/fabric/crypto/ordererOrganizations/hlf.k8s/orderers/orderer0.hlf.k8s/msp/tlscacerts/tlsca.hlf.k8s-cert.pem
+              value: /etc/hyperledger/fabric/crypto/ordererOrganizations/hlf.k8s.com/orderers/orderer0.hlf.k8s.com/msp/tlscacerts/tlsca.hlf.k8s.com-cert.pem
           volumeMounts:
             - name: chaincode-package
               mountPath: /etc/hyperledger/fabric/chaincodes
