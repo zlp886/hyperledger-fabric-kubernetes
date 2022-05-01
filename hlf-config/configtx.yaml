@@ -13,7 +13,7 @@ Organizations:
         # ID to load the MSP definition as
         ID: OrdererMSP
         # MSPDir is the filesystem path which contains the MSP configuration
-        MSPDir: crypto-config/ordererOrganizations/dummy.com/msp
+        MSPDir: crypto-config/ordererOrganizations/hlf.k8s.com/msp
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
         #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
@@ -29,14 +29,14 @@ Organizations:
                 Rule: "OR('OrdererMSP.admin')"
 
         OrdererEndpoints:
-            - orderer0-dummy-com:7050
-            - orderer1-dummy-com:7050
-            - orderer2-dummy-com:7050
+            - orderer0.hlf.k8s.com:7050
+            - orderer1.hlf.k8s.com:7050
+            - orderer2.hlf.k8s.com:7050
 
     - &Org1
         Name: Org1MSP
         ID: Org1MSP
-        MSPDir: crypto-config/peerOrganizations/org1.dummy.com/msp
+        MSPDir: crypto-config/peerOrganizations/org1.hlf.k8s.com/msp
         Policies:
             Readers:
                 Type: Signature
@@ -51,13 +51,13 @@ Organizations:
                 Type: Signature
                 Rule: "OR('Org1MSP.peer')"
         AnchorPeers:
-            - Host: peer0-org1-dummy-com
+            - Host: peer0.org1.hlf.k8s.com
               Port: 7051
 
     - &Org2
         Name: Org2MSP
         ID: Org2MSP
-        MSPDir: crypto-config/peerOrganizations/org2.dummy.com/msp
+        MSPDir: crypto-config/peerOrganizations/org2.hlf.k8s.com/msp
         Policies:
             Readers:
                 Type: Signature
@@ -72,13 +72,13 @@ Organizations:
                 Type: Signature
                 Rule: "OR('Org2MSP.peer')"
         AnchorPeers:
-            - Host: peer0-org2-dummy-com
+            - Host: peer0.org2.hlf.k8s.com
               Port: 7051
 
     - &Org3
         Name: Org3MSP
         ID: Org3MSP
-        MSPDir: crypto-config/peerOrganizations/org3.dummy.com/msp
+        MSPDir: crypto-config/peerOrganizations/org3.hlf.k8s.com/msp
         Policies:
             Readers:
                 Type: Signature
@@ -93,7 +93,7 @@ Organizations:
                 Type: Signature
                 Rule: "OR('Org3MSP.peer')"
         AnchorPeers:
-            - Host: peer0-org3-dummy-com
+            - Host: peer0.org3.hlf.k8s.com
               Port: 7051
 
 ################################################################################
@@ -226,18 +226,18 @@ Orderer: &OrdererDefaults
 
     EtcdRaft:
         Consenters:
-        - Host: orderer0-dummy-com
+        - Host: orderer0.hlf.k8s.com
           Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer0.dummy.com/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer0.dummy.com/tls/server.crt
-        - Host: orderer1-dummy-com
+          ClientTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer0.hlf.k8s.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer0.hlf.k8s.com/tls/server.crt
+        - Host: orderer1.hlf.k8s.com
           Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer1.dummy.com/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer1.dummy.com/tls/server.crt
-        - Host: orderer2-dummy-com
+          ClientTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer1.hlf.k8s.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer1.hlf.k8s.com/tls/server.crt
+        - Host: orderer2.hlf.k8s.com
           Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/dummy.com/orderers/orderer2.dummy.com/tls/server.crt
+          ClientTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer2.hlf.k8s.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/hlf.k8s.com/orderers/orderer2.hlf.k8s.com/tls/server.crt
 
     # Organizations is the list of orgs which are defined as participants on
     # the orderer side of the network
@@ -312,14 +312,14 @@ Profiles:
             Capabilities:
                 <<: *OrdererCapabilities
         Consortiums:
-            SampleConsortium:
+            k8sConsortium:
                 Organizations:
                     - *Org1
                     - *Org2
                     - *Org3
 
     ChannelAll:
-        Consortium: SampleConsortium
+        Consortium: k8sConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
@@ -331,7 +331,7 @@ Profiles:
                 <<: *ApplicationCapabilities
 
     Channel12:
-        Consortium: SampleConsortium
+        Consortium: k8sConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults

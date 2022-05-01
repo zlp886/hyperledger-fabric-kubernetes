@@ -1,48 +1,48 @@
 OrdererOrgs:
   - Name: Orderer
-    Domain: dummy.com
+    Domain: hlf.k8s.com
     EnableNodeOUs: true
     Specs:
       - Hostname: orderer0
         SANS:
           - localhost
-          - orderer0-dummy-com
+          - orderer0.hlf.k8s.com
       - Hostname: orderer1
         SANS:
           - localhost
-          - orderer1-dummy-com
+          - orderer1.hlf.k8s.com
       - Hostname: orderer2
         SANS:
           - localhost
-          - orderer2-dummy-com
+          - orderer2.hlf.k8s.com
 PeerOrgs:
   - Name: Org1
-    Domain: org1.dummy.com
+    Domain: org1.hlf.k8s.com
     EnableNodeOUs: true
     Template:
       Count: 1
       SANS:
         - localhost
-        - "{{.Hostname}}-org1-dummy-com"
+        - "{{.Hostname}}.hlf.k8s.com"
     Users:
       Count: 1
   - Name: Org2
-    Domain: org2.dummy.com
+    Domain: org2.hlf.k8s.com
     EnableNodeOUs: true
     Template:
       Count: 1
       SANS:
         - localhost
-        - "{{.Hostname}}-org2-dummy-com"
+        - "{{.Hostname}}.hlf.k8s.com"
     Users:
       Count: 1
   - Name: Org3
-    Domain: org3.dummy.com
+    Domain: org3.hlf.k8s.com
     EnableNodeOUs: true
     Template:
       Count: 1
       SANS:
         - localhost
-        - "{{.Hostname}}-org3-dummy-com"
+        - "{{.Hostname}}.hlf.k8s.com"
     Users:
       Count: 1

@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: setup
-  namespace: dummy-com
+  namespace: hlfk8s
 spec:
   template:
     spec:
@@ -16,7 +16,7 @@ spec:
             - clone
             - --single-branch
             - --
-            - https://github.com/TommyStarK/hyperledger-fabric-kubernetes.git
+            - https://github.com/zlp/hyperledger-fabric-kubernetes.git
             - /repo
           securityContext:
             runAsUser: 1
@@ -27,7 +27,7 @@ spec:
               mountPath: /repo
       containers:
       - name: fabric-tools
-        image: hyperledger/fabric-tools:2.3.0
+        image: hyperledger/fabric-tools:2.4
         imagePullPolicy: IfNotPresent
         workingDir: /repo/hlf-config
         command: ["/bin/sh",  "-c"]

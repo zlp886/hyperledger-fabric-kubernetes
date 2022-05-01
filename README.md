@@ -1,6 +1,6 @@
 # hyperledger-fabric-kubernetes
 
-This repository aims to demonstrate how to deploy an Hyperledger Fabric [v2.3](https://hyperledger-fabric.readthedocs.io/en/release-2.3/) network on Kubernetes, and use chaincodes
+This repository aims to demonstrate how to deploy an Hyperledger Fabric [v2.4](https://hyperledger-fabric.readthedocs.io/en/release-2.3/) network on Kubernetes, and use chaincodes
 as external services.
 
 Legacy way of building and runing chaincodes required from the peer, a binding to the Docker socket for being able to
