@@ -1,5 +1,6 @@
 resources:
   - services/ordering.service.hlf.k8s.com.yaml
+  - services/ingress.yaml
   - services/org1.hlf.k8s.com/couchdb.yaml
   - services/org1.hlf.k8s.com/peer0.yaml
   - services/org2.hlf.k8s.com/peer0.yaml
