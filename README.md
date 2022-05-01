@@ -31,7 +31,7 @@ You'll need two different terminals and run the following commands:
 
 ```bash
 # connect to the pod running the CLI for peer0.org1
-❯ kubectl exec -it -n dummy-com $(kubectl get pod -n dummy-com -l component=cli.peer0.org1.dummy.com -o jsonpath="{.items[0].metadata.name}") -- bash
+❯ kubectl exec -it -n dummy-com $(kubectl get pod -n dummy-com -l component=cli.peer0.org1.hlf.k8s.com -o jsonpath="{.items[0].metadata.name}") -- bash
 
 ❯ cd artifacts;
 ❯ peer channel create -c $CHANNEL_NAME -f ./channelall.tx -o orderer0-dummy-com:7050 --tls --cafile $ORDERER_CA;
@@ -43,7 +43,7 @@ You'll need two different terminals and run the following commands:
 
 ```bash
 # connect to the pod running the CLI for peer0.org2
-❯ kubectl exec -it -n dummy-com $(kubectl get pod -n dummy-com -l component=cli.peer0.org2.dummy.com -o jsonpath="{.items[0].metadata.name}") -- bash
+❯ kubectl exec -it -n dummy-com $(kubectl get pod -n dummy-com -l component=cli.peer0.org2.hlf.k8s.com -o jsonpath="{.items[0].metadata.name}") -- bash
 
 ❯ cd artifacts;
 ❯ peer channel join -b ./channelall.block
@@ -88,7 +88,7 @@ We are almost done, chaincode has been approved by both Org1 and Org2, we can no
 
 
 # commit the chaincode
-❯ peer lifecycle chaincode commit -o orderer0-dummy-com:7050 --channelID $CHANNEL_NAME --name chaincode-as-external-service --version 1.0 --sequence 1 --init-required --tls --cafile $ORDERER_CA --peerAddresses peer0-org1-dummy-com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0-org2-dummy-com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls/ca.crt
+❯ peer lifecycle chaincode commit -o orderer0-dummy-com:7050 --channelID $CHANNEL_NAME --name chaincode-as-external-service --version 1.0 --sequence 1 --init-required --tls --cafile $ORDERER_CA --peerAddresses peer0-org1-dummy-com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0-org2-dummy-com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/peers/peer0.org2.hlf.k8s.com/tls/ca.crt
 ```
 
 That's it ! The chaincode is ready to be invoked :smile:.
@@ -97,7 +97,7 @@ That's it ! The chaincode is ready to be invoked :smile:.
 
 ```bash
 # init and invoke the chaincode
-❯ peer chaincode invoke -o orderer0-dummy-com:7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n chaincode-as-external-service  --peerAddresses peer0-org1-dummy-com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0-org2-dummy-com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls/ca.crt --isInit -c '{"function":"Init","Args":[]}'
+❯ peer chaincode invoke -o orderer0-dummy-com:7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n chaincode-as-external-service  --peerAddresses peer0-org1-dummy-com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0-org2-dummy-com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/peers/peer0.org2.hlf.k8s.com/tls/ca.crt --isInit -c '{"function":"Init","Args":[]}'
 ```
 
 - Terminal 2: CLI configured for the peer of Org2

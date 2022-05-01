@@ -5,7 +5,7 @@ metadata:
   name: couchdb-hlf-k8s-com
   namespace: hlfk8s
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     component: "couchdb.hlf.k8s.com"
   ports:
