@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-kubectl apply -f k8s/namespaces;
 kubectl apply -f k8s/secrets/org1.hlf.k8s.com;
 kubectl apply -f k8s/storage/pvc;
 kubectl apply -f k8s/job;
