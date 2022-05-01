@@ -2,7 +2,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: chaincode-buildpack
-  namespace: dummy-com
+  namespace: hlfk8s
+  annotations:
+    volume.beta.kubernetes.io/storage-class: managed-nfs-storage
+    volume.beta.kubernetes.io/storage-provisioner: zlp-nfs-storage
 spec:
   accessModes:
     - ReadWriteMany
