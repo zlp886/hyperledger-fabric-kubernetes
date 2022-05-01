@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "orderer0.dummy.com"
-  namespace: dummy-com
+  name: "orderer2.hlf.k8s.com"
+  namespace: hlfk8s
   labels: 
-    component: "orderer0.dummy.com"
+    component: "orderer2.hlf.k8s.com"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: "orderer0.dummy.com"
+      component: "orderer2.hlf.k8s.com"
   template:
     metadata:
       labels:
-        component: "orderer0.dummy.com"
+        component: "orderer2.hlf.k8s.com"
         type: orderer
     spec:
       containers:
-        - name: orderer0-dummy-com
-          image: hyperledger/fabric-orderer:2.3.0
+        - name: orderer2-hlf-k8s-com
+          image: hyperledger/fabric-orderer:2.4
           imagePullPolicy: IfNotPresent
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric
           env:
@@ -68,10 +68,10 @@ spec:
               subPath: orderer.genesis.block
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/orderer/msp
-              subPath: ordererOrganizations/dummy.com/orderers/orderer0.dummy.com/msp
+              subPath: ordererOrganizations/hlf.k8s.com/orderers/orderer2.hlf.k8s.com/msp
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/orderer/tls
-              subPath: ordererOrganizations/dummy.com/orderers/orderer0.dummy.com/tls
+              subPath: ordererOrganizations/hlf.k8s.com/orderers/orderer2.hlf.k8s.com/tls
       volumes:
       - name: hlf-artifacts
         persistentVolumeClaim:

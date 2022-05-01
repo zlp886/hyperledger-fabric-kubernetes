@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chaincode-demo
-  namespace: dummy-com
+  namespace: hlfk8s
   labels: 
     chaincode: chaincode-demo
 spec:
