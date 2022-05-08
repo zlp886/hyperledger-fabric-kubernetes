@@ -90,7 +90,7 @@ We are almost done, chaincode has been approved by both Org1 and Org2, we can no
 
 
 # commit the chaincode
-❯ peer lifecycle chaincode commit -o orderer0.hlf.k8s.com:7050 --channelID $CHANNEL_NAME --name chaincode-as-external-service --version 1.0 --sequence 1 --init-required --tls --cafile $ORDERER_CA --peerAddresses peer0-org1-hlf-k8s-com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0-org2-hlf-k8s-com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/peers/peer0.org2.hlf.k8s.com/tls/ca.crt
+❯ peer lifecycle chaincode commit -o orderer0.hlf.k8s.com:7050 --channelID $CHANNEL_NAME --name chaincode-as-external-service --version 1.0 --sequence 1 --init-required --tls --cafile $ORDERER_CA --peerAddresses peer0.org1.hlf.k8s.com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0.org2.hlf.k8s.com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/peers/peer0.org2.hlf.k8s.com/tls/ca.crt
 ```
 
 That's it ! The chaincode is ready to be invoked :smile:.
@@ -99,7 +99,7 @@ That's it ! The chaincode is ready to be invoked :smile:.
 
 ```bash
 # init and invoke the chaincode
-❯ peer chaincode invoke -o orderer0.hlf.k8s.com:7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n chaincode-as-external-service  --peerAddresses peer0-org1-hlf-k8s-com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0-org2-hlf-k8s-com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/peers/peer0.org2.hlf.k8s.com/tls/ca.crt --isInit -c '{"function":"Init","Args":[]}'
+❯ peer chaincode invoke -o orderer0.hlf.k8s.com:7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n chaincode-as-external-service  --peerAddresses peer0.org1.hlf.k8s.com:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE  --peerAddresses peer0.org2.hlf.k8s.com:7051 --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/org2.hlf.k8s.com/peers/peer0.org2.hlf.k8s.com/tls/ca.crt --isInit -c '{"function":"Init","Args":[]}'
 ```
 
 - Terminal 2: CLI configured for the peer of Org2
